@@ -1,0 +1,475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="testbench_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="testbench" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="40.549 ns"></ZoomStartTime>
+      <ZoomEndTime time="115.650 ns"></ZoomEndTime>
+      <Cursor1Time time="70.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="160"></NameColumnWidth>
+      <ValueColumnWidth column_width="72"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="12" />
+   <wvobject fp_name="/testbench/input_data" type="array">
+      <obj_property name="ElementShortName">input_data[15:0]</obj_property>
+      <obj_property name="ObjectShortName">input_data[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/rst" type="logic">
+      <obj_property name="ElementShortName">rst</obj_property>
+      <obj_property name="ObjectShortName">rst</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/enable" type="logic">
+      <obj_property name="ElementShortName">enable</obj_property>
+      <obj_property name="ObjectShortName">enable</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/output_data" type="array">
+      <obj_property name="ElementShortName">output_data[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_data[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/sampleT" type="array">
+      <obj_property name="ElementShortName">sampleT[15:0]</obj_property>
+      <obj_property name="ObjectShortName">sampleT[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/data" type="array">
+      <obj_property name="ElementShortName">data[99:0][15:0]</obj_property>
+      <obj_property name="ObjectShortName">data[99:0][15:0]</obj_property>
+      <obj_property name="Radix">BINARYRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject fp_name="/testbench/data[99]" type="array">
+         <obj_property name="ElementShortName">[99][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[99][15:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[98]" type="array">
+         <obj_property name="ElementShortName">[98][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[98][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[97]" type="array">
+         <obj_property name="ElementShortName">[97][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[97][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[96]" type="array">
+         <obj_property name="ElementShortName">[96][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[96][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[95]" type="array">
+         <obj_property name="ElementShortName">[95][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[95][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[94]" type="array">
+         <obj_property name="ElementShortName">[94][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[94][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[93]" type="array">
+         <obj_property name="ElementShortName">[93][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[93][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[92]" type="array">
+         <obj_property name="ElementShortName">[92][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[92][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[91]" type="array">
+         <obj_property name="ElementShortName">[91][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[91][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[90]" type="array">
+         <obj_property name="ElementShortName">[90][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[90][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[89]" type="array">
+         <obj_property name="ElementShortName">[89][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[89][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[88]" type="array">
+         <obj_property name="ElementShortName">[88][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[88][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[87]" type="array">
+         <obj_property name="ElementShortName">[87][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[87][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[86]" type="array">
+         <obj_property name="ElementShortName">[86][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[86][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[85]" type="array">
+         <obj_property name="ElementShortName">[85][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[85][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[84]" type="array">
+         <obj_property name="ElementShortName">[84][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[84][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[83]" type="array">
+         <obj_property name="ElementShortName">[83][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[83][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[82]" type="array">
+         <obj_property name="ElementShortName">[82][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[82][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[81]" type="array">
+         <obj_property name="ElementShortName">[81][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[81][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[80]" type="array">
+         <obj_property name="ElementShortName">[80][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[80][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[79]" type="array">
+         <obj_property name="ElementShortName">[79][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[79][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[78]" type="array">
+         <obj_property name="ElementShortName">[78][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[78][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[77]" type="array">
+         <obj_property name="ElementShortName">[77][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[77][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[76]" type="array">
+         <obj_property name="ElementShortName">[76][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[76][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[75]" type="array">
+         <obj_property name="ElementShortName">[75][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[75][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[74]" type="array">
+         <obj_property name="ElementShortName">[74][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[74][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[73]" type="array">
+         <obj_property name="ElementShortName">[73][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[73][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[72]" type="array">
+         <obj_property name="ElementShortName">[72][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[72][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[71]" type="array">
+         <obj_property name="ElementShortName">[71][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[71][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[70]" type="array">
+         <obj_property name="ElementShortName">[70][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[70][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[69]" type="array">
+         <obj_property name="ElementShortName">[69][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[69][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[68]" type="array">
+         <obj_property name="ElementShortName">[68][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[68][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[67]" type="array">
+         <obj_property name="ElementShortName">[67][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[67][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[66]" type="array">
+         <obj_property name="ElementShortName">[66][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[66][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[65]" type="array">
+         <obj_property name="ElementShortName">[65][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[65][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[64]" type="array">
+         <obj_property name="ElementShortName">[64][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[64][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[63]" type="array">
+         <obj_property name="ElementShortName">[63][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[63][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[62]" type="array">
+         <obj_property name="ElementShortName">[62][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[62][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[61]" type="array">
+         <obj_property name="ElementShortName">[61][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[61][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[60]" type="array">
+         <obj_property name="ElementShortName">[60][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[60][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[59]" type="array">
+         <obj_property name="ElementShortName">[59][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[59][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[58]" type="array">
+         <obj_property name="ElementShortName">[58][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[58][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[57]" type="array">
+         <obj_property name="ElementShortName">[57][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[57][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[56]" type="array">
+         <obj_property name="ElementShortName">[56][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[56][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[55]" type="array">
+         <obj_property name="ElementShortName">[55][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[55][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[54]" type="array">
+         <obj_property name="ElementShortName">[54][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[54][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[53]" type="array">
+         <obj_property name="ElementShortName">[53][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[53][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[52]" type="array">
+         <obj_property name="ElementShortName">[52][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[52][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[51]" type="array">
+         <obj_property name="ElementShortName">[51][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[51][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[50]" type="array">
+         <obj_property name="ElementShortName">[50][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[50][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[49]" type="array">
+         <obj_property name="ElementShortName">[49][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[49][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[48]" type="array">
+         <obj_property name="ElementShortName">[48][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[48][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[47]" type="array">
+         <obj_property name="ElementShortName">[47][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[47][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[46]" type="array">
+         <obj_property name="ElementShortName">[46][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[46][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[45]" type="array">
+         <obj_property name="ElementShortName">[45][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[45][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[44]" type="array">
+         <obj_property name="ElementShortName">[44][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[44][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[43]" type="array">
+         <obj_property name="ElementShortName">[43][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[43][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[42]" type="array">
+         <obj_property name="ElementShortName">[42][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[42][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[41]" type="array">
+         <obj_property name="ElementShortName">[41][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[41][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[40]" type="array">
+         <obj_property name="ElementShortName">[40][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[40][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[39]" type="array">
+         <obj_property name="ElementShortName">[39][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[39][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[38]" type="array">
+         <obj_property name="ElementShortName">[38][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[38][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[37]" type="array">
+         <obj_property name="ElementShortName">[37][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[37][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[36]" type="array">
+         <obj_property name="ElementShortName">[36][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[36][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[35]" type="array">
+         <obj_property name="ElementShortName">[35][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[35][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[34]" type="array">
+         <obj_property name="ElementShortName">[34][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[34][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[33]" type="array">
+         <obj_property name="ElementShortName">[33][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[33][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[32]" type="array">
+         <obj_property name="ElementShortName">[32][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[32][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[31]" type="array">
+         <obj_property name="ElementShortName">[31][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[31][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[30]" type="array">
+         <obj_property name="ElementShortName">[30][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[30][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[29]" type="array">
+         <obj_property name="ElementShortName">[29][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[29][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[28]" type="array">
+         <obj_property name="ElementShortName">[28][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[28][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[27]" type="array">
+         <obj_property name="ElementShortName">[27][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[27][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[26]" type="array">
+         <obj_property name="ElementShortName">[26][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[26][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[25]" type="array">
+         <obj_property name="ElementShortName">[25][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[25][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[24]" type="array">
+         <obj_property name="ElementShortName">[24][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[24][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[23]" type="array">
+         <obj_property name="ElementShortName">[23][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[23][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[22]" type="array">
+         <obj_property name="ElementShortName">[22][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[22][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[21]" type="array">
+         <obj_property name="ElementShortName">[21][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[21][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[20]" type="array">
+         <obj_property name="ElementShortName">[20][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[20][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[19]" type="array">
+         <obj_property name="ElementShortName">[19][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[19][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[18]" type="array">
+         <obj_property name="ElementShortName">[18][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[18][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[17]" type="array">
+         <obj_property name="ElementShortName">[17][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[17][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[16]" type="array">
+         <obj_property name="ElementShortName">[16][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[16][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[15]" type="array">
+         <obj_property name="ElementShortName">[15][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[15][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[14]" type="array">
+         <obj_property name="ElementShortName">[14][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[14][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[13]" type="array">
+         <obj_property name="ElementShortName">[13][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[13][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[12]" type="array">
+         <obj_property name="ElementShortName">[12][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[12][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[11]" type="array">
+         <obj_property name="ElementShortName">[11][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[11][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[10]" type="array">
+         <obj_property name="ElementShortName">[10][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[10][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[9]" type="array">
+         <obj_property name="ElementShortName">[9][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[9][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[8]" type="array">
+         <obj_property name="ElementShortName">[8][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[8][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[7]" type="array">
+         <obj_property name="ElementShortName">[7][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[7][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[6]" type="array">
+         <obj_property name="ElementShortName">[6][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[6][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[5]" type="array">
+         <obj_property name="ElementShortName">[5][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[5][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[4]" type="array">
+         <obj_property name="ElementShortName">[4][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[4][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[3]" type="array">
+         <obj_property name="ElementShortName">[3][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[3][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[2]" type="array">
+         <obj_property name="ElementShortName">[2][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[2][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[1]" type="array">
+         <obj_property name="ElementShortName">[1][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[1][15:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="/testbench/data[0]" type="array">
+         <obj_property name="ElementShortName">[0][15:0]</obj_property>
+         <obj_property name="ObjectShortName">[0][15:0]</obj_property>
+         <obj_property name="Radix">BINARYRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject fp_name="/testbench/k" type="array">
+      <obj_property name="ElementShortName">k[31:0]</obj_property>
+      <obj_property name="ObjectShortName">k[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/FILE1" type="array">
+      <obj_property name="ElementShortName">FILE1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">FILE1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/N1" type="array">
+      <obj_property name="ElementShortName">N1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N1[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/N2" type="array">
+      <obj_property name="ElementShortName">N2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N2[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/testbench/N3" type="array">
+      <obj_property name="ElementShortName">N3[31:0]</obj_property>
+      <obj_property name="ObjectShortName">N3[31:0]</obj_property>
+   </wvobject>
+</wave_config>

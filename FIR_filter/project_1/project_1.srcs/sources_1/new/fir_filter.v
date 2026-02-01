@@ -1,79 +1,155 @@
 `timescale 1ns / 1ps
-//////////////////////////////////////////////////////////////////////////////////
-// Company: 
-// Engineer: 
-// 
-// Create Date: 01/23/2026 11:20:05 AM
-// Design Name: 
-// Module Name: fir_filter
-// Project Name: 
-// Target Devices: 
-// Tool Versions: 
-// Description: 
-// 
-// Dependencies: 
-// 
-// Revision:
-// Revision 0.01 - File Created
-// Additional Comments:
-// 
-//////////////////////////////////////////////////////////////////////////////////
-
-
-module fir_filter( input_data, clk, rst, enable,output_data, sampleT
-    );
-    parameter N1 = 8, N2 = 16, N3 = 32;
-    input signed [N2-1:0]input_data;
+module fir_filter( input_data, clk, rst, enable,output_data, sampleT);
+    // N1 = filter coefficient width , N2 = input samples width, N3 = output samples width
+    parameter TAPS = 8, N1 = 8, N2 = 16, N3 = 32; 
+    input signed [N2-1:0]input_data; //input is 16 bit
     input clk,rst,enable;
-    output signed [N3-1:0] output_data;
-    output signed [N2-1:0] sampleT;
-    wire signed [N1-1:0] b[0:7];
-    assign b[0] = 8'b00010000;
-    assign b[1] = 8'b00010000;
-    assign b[2] = 8'b00010000;
-    assign b[3] = 8'b00010000;
-    assign b[4] = 8'b00010000;
-    assign b[5] = 8'b00010000;
-    assign b[6] = 8'b00010000;
-    assign b[7] = 8'b00010000;
+    output reg signed [N3-1:0] output_data; //output is 32 bit
+    output signed [N2-1:0] sampleT; //help in debugging
+    //filter-coefficients
+    reg signed [N1-1:0] coeff[0:TAPS-1]; //8 8-bit filter coefficient
+    initial $readmemb("C:/Users/Hartik Rai/OneDrive/Dokumen/projects/FIR_filter/coeff.data.txt",coeff);
+    localparam signed [N3-1:0] MAX_VAL = (1 <<< (N3-1)) - 1;
+    localparam signed [N3-1:0] MIN_VAL = -(1 <<< (N3-1));
+    localparam integer PARTIALS = (TAPS+1)/2;
+    reg signed [N3-1:0] acc_comb,acc_next;
+    reg signed [N3-1:0] scaled_comb,scaled_next;
+    reg signed [N3-1:0] sat_comb;
+    reg signed [N2-1:0] past_input_samples [0:TAPS-2];
+    integer i;
+    reg signed [N3-1:0] mult_reg[0:TAPS-1];
+    reg signed [N3-1:0] partial_acc [0:PARTIALS-1];
+    reg signed [N3-1:0] final_acc;
+    reg signed [N3-1:0] final_acc_temp;
+    //Pipeline implementation
     
-    reg signed [N3-1:0] output_data_reg;
-    reg signed [N2-1:0] past_input_samples [0:6];
-    
+    //Stage 0 (Input delay line)
     always @(posedge clk)
         begin
-            if(rst == 1'b1)
+            if(rst)
                 begin
-                    past_input_samples[0] <= 0;
-                    past_input_samples[1] <= 0;
-                    past_input_samples[2] <= 0;
-                    past_input_samples[3] <= 0;
-                    past_input_samples[4] <= 0;
-                    past_input_samples[5] <= 0;
-                    past_input_samples[6] <= 0;
-                    output_data_reg <= 0;
+                    for( i = 0;i<TAPS-1;i=i+1)
+                        past_input_samples[i] <= 0;
                 end
+           else if(enable) 
+            begin
+                for(i = TAPS-2;i>0;i=i-1)
+                    past_input_samples[i] <= past_input_samples[i-1];
                 
-             else if ((enable==1'b1) && (rst == 1'b0))
+                past_input_samples[0] <= input_data;
+            end               
+        end
+    
+    //Stage 1 (Multiplication of current input with all coefficient)
+    always @(posedge clk)
+        begin
+            if(rst) 
+                begin 
+                    for(i = 0;i <TAPS;i=i+1)
+                        mult_reg[i] <= 0;
+                end
+            else if(enable)
                 begin
-                    output_data_reg <= (b[0] * input_data 
-                                      + b[1] * past_input_samples[0]
-                                      + b[2] * past_input_samples[1]
-                                      + b[3] * past_input_samples[2]
-                                      + b[4] * past_input_samples[3]
-                                      + b[5] * past_input_samples[4]
-                                      + b[6] * past_input_samples[5]
-                                      + b[7] * past_input_samples[6])>>>(N1-1);
-                     past_input_samples[0] <= input_data;
-                     past_input_samples[1] <= past_input_samples[0];
-                     past_input_samples[2] <= past_input_samples[1];
-                     past_input_samples[3] <= past_input_samples[2];  
-                     past_input_samples[4] <= past_input_samples[3];
-                     past_input_samples[5] <= past_input_samples[4];
-                     past_input_samples[6] <= past_input_samples[5];
+                    mult_reg[0] <= input_data * coeff[0];
+                    for(i = 1;i<TAPS;i = i+1)
+                        mult_reg[i] <= past_input_samples[i-1] * coeff[i];
                 end
         end
     
-    assign output_data = output_data_reg;
-    assign sampleT = past_input_samples[0];
+    //Stage 2 (Partial Accumulation)
+    //Pairwise addition 
+    
+    always @(posedge clk)
+        begin
+            if(rst) 
+                begin
+                    for (i =0;i<PARTIALS;i=i+1)
+                        partial_acc[i] <= 0;
+                end
+            else if(enable)
+                begin
+                    for(i =0;i<PARTIALS;i=i+1)
+                        begin
+                        if((2*i+1)<TAPS) 
+                            partial_acc[i] <=  mult_reg[2*i] + mult_reg[2*i+1];
+                        else 
+                            partial_acc[i] <= mult_reg[2*i];//leftover taps
+                        end
+                end
+        end
+        
+    //Stage 3 (Final accumulation)
+    
+    always @(*)
+        begin
+            final_acc_temp = 0;
+            for(i =0;i<PARTIALS;i = i+1)
+                final_acc_temp = final_acc_temp + partial_acc[i];
+        end
+    
+    always @(posedge clk)
+        begin
+            if(rst) final_acc <= 0;
+            else if(enable) 
+                final_acc <= final_acc_temp;
+        end
+    
+    
+    //Stage 4 (Scaling & Saturation)
+    always @(posedge clk)
+        begin
+           if(rst) 
+                output_data <= 0;
+           else if(enable)
+            begin
+                scaled_comb <= final_acc >>> (N1-1);
+                if ((final_acc >>> (N1-1)) > MAX_VAL)
+                    output_data <= MAX_VAL;
+                else if ((final_acc >>> (N1-1)) < MIN_VAL)
+                    output_data <= MIN_VAL;
+                else
+                    output_data <= (final_acc >>> (N1-1));
+            end
+            
+        end
+    
+    //Combinational Part
+//    always @(*)
+//        begin
+//            acc_comb    = 0;
+//            scaled_comb = 0;
+//            sat_comb    = 0;
+//            acc_comb = coeff[0] * input_data; //h[0]*x[n]
+//            for(i =1;i<TAPS;i = i +1)
+//                acc_comb = acc_comb + coeff[i]*past_input_samples[i-1];
+//            //scaling 
+//            scaled_comb = acc_comb >>> (N1-1); 
+            
+//            //Saturation logic
+//            if(scaled_comb > MAX_VAL)
+//                sat_comb = MAX_VAL;
+//            else if (scaled_comb < MIN_VAL)
+//                sat_comb = MIN_VAL;
+//            else sat_comb = scaled_comb;
+//        end
+    
+    
+    //Sequential part
+//    always @(posedge clk)
+//        begin
+//            if(rst == 1'b1) begin
+//                output_data <= 0;
+//                for(i = 0;i<TAPS-1;i= i+1)
+//                    past_input_samples[i] <= 0;
+//            end
+            
+//            else if ((enable == 1'b1)&&(rst == 1'b0)) begin
+//                output_data <= sat_comb;
+//                for(i =TAPS-2;i>0;i=i-1)
+//                    past_input_samples[i] <= past_input_samples[i-1];
+//                 past_input_samples[0] <= input_data;
+//            end
+//        end
+
+    assign sampleT = past_input_samples[0]; // 1-cycle delayed input
 endmodule

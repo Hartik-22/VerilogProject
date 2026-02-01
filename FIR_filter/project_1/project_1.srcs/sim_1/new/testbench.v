@@ -22,7 +22,7 @@ module testbench;
      
      integer k;
      integer FILE1;
-     integer cycle_count;
+     integer cycle_count; //to count the latency after the pipeline
      initial cycle_count = 0;
 
      always @(posedge clk)
@@ -40,9 +40,10 @@ module testbench;
             clk = 1'b0;
             enable = 1'b0;
             input_data = 0;
-            
+            //reading the input data from the file
             $readmemb("C:/Users/Hartik Rai/OneDrive/Dokumen/projects/FIR_filter/input.data.txt",data);
             FILE1 = $fopen("save.data.txt","w");
+            //debugging purpose
             $display("RAW FILE CHECK:");
             $display("data[0] = %b", data[0]);
             $display("data[1] = %b", data[1]);
@@ -51,17 +52,6 @@ module testbench;
             #20 rst = 1'b1;
             #40 rst = 1'b0;
                 
-
-//            @(posedge clk);
-//            input_data = 0;
-
-//            repeat (20) @(posedge clk);
-//                    if(cycle_count >= (TAPS + 4))
-//                            $fdisplay(FILE1, "%0d %b", cycle_count, output_data);
-           
-//            #20 rst = 1'b1;
-//            #40 rst = 1'b0;
-            
             @(posedge clk);
             enable = 1;
             input_data = data[0];            
@@ -74,7 +64,7 @@ module testbench;
                     input_data <= data[k];
                     if(cycle_count >= LATENCY)
                     begin
-                     $fdisplay(FILE1, "%b", output_data);
+                     $fdisplay(FILE1, "%b", output_data); //writing the output data to the file
                      $display("latency =%d",cycle_count);
                      end
 //                        $fdisplay(FILE1,"%b",output_data); 

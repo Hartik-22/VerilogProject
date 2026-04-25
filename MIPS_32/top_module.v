@@ -23,8 +23,8 @@ module top_module(clk1,clk2);
     reg [31:0] ALU_A, ALU_B; //INPUTS TO THE ALU, DETERMINED BY FORWARDING LOGIC
     reg [4:0] EX_MEM_dest, MEM_WB_dest; //DESTINATION REGISTER NUMBERS FOR EX-MEM AND MEM-WB STAGES, USED IN FORWARDING LOGIC
 
-    reg BHT [0:15]; //SIMPLE 1-BIT BRANCH HISTORY TABLE WITH 16 ENTRIES, INDEXED BY LOWER 4 BITS OF THE BRANCH INSTRUCTION ADDRESS
-
+    reg [1:0] BHT [0:15]; // 2-BIT BRANCH HISTORY TABLE WITH 16 ENTRIES, INDEXED BY LOWER 4 BITS OF THE BRANCH INSTRUCTION ADDRESS
+    
     reg IF_ID_pred; // prediction made in IF stage
     reg ID_EX_pred; // prediction passed to EX stage
     reg actual_taken;
@@ -34,14 +34,21 @@ module top_module(clk1,clk2);
     reg [31:0] next_PC;
     reg PC_write;
 
-
+    //Perforamance counters (for testing and evaluation purposes)
+    reg [31:0] cycle_count;
+    reg [31:0] instr_count;
+    reg [31:0] stall_count;
+    reg [31:0] branch_count;
+    reg [31:0] mispred_count;
+    reg IF_ID_valid, ID_EX_valid, EX_MEM_valid, MEM_WB_valid;
+    
     //--------------------------------------- IF STAGE ---------------------------------------
     always @(posedge clk1)
         begin
             if (HALTED) begin
                 IF_ID_IR <=  NOP; //IF HALTED, INSERT NOP IN IF/ID REGISTER TO PREVENT FURTHER INSTRUCTION FROM BEING PROCESSED
                 IF_ID_NPC <= 0;
-                // PC <= PC; //HOLD THE PC CONSTANT
+               
             end
             else
                 begin 
@@ -55,6 +62,7 @@ module top_module(clk1,clk2);
                 begin
                     IF_ID_IR <= NOP;
                     IF_ID_NPC <= 0;
+                    IF_ID_valid <= 0;
                 end
 
             else if(stall)
@@ -62,27 +70,20 @@ module top_module(clk1,clk2);
                 //HOLD THE PC AND IF/ID REGISTERS CONSTANT FOR ONE CYCLE TO STALL THE PIPELINE
                 IF_ID_IR <=  IF_ID_IR;
                 IF_ID_NPC <=  IF_ID_NPC;
-                // PC <=  PC;    
+                IF_ID_valid <= IF_ID_valid;
             end
 
             else 
                 begin
-                    // TAKEN_BRANCH <= 0;
-                    // IF_ID_IR <=  Mem[PC];
-                    // IF_ID_NPC <=  PC + 1;
-                    // PC <=  PC + 1;
                     //BRANCH PREDICTION LOGIC
-                    IF_ID_pred <= BHT[PC[3:0]];
+                    IF_ID_pred <= BHT[PC[3:0]][1]; // MSB = Prediction: 1 = Taken, 0 = Not Taken
                     // TAKEN_BRANCH <= 0;
                     IF_ID_IR <= Mem[PC]; //FETCH THE INSTRUCTION
                     IF_ID_NPC <= PC + 1; //CALCULATE THE NEXT PC
 
-                    // if(PC_write) begin
-                    //     PC <= next_PC;
-                    //     PC_write <= 0; //RESET PC_WRITE SIGNAL
-                    // end
+                    IF_ID_valid <= 1; //MARK THE IF/ID REGISTER AS VALID SINCE WE ARE FETCHING AN INSTRUCTION
 
-                    if(BHT[PC[3:0]] == 1'b1 && BTB_valid[PC[3:0]] == 1'b1) //PREDICT TAKEN
+                    if(BHT[PC[3:0]][1] == 1'b1 && BTB_valid[PC[3:0]] == 1'b1) //PREDICT TAKEN
                     begin
                         PC <=  BTB[PC[3:0]]; //UPDATE THE PC
                     end
@@ -94,6 +95,7 @@ module top_module(clk1,clk2);
                    
                 end
             end
+            cycle_count <= cycle_count + 1; //INCREMENT CYCLE COUNT EVERY CYCLE
         end
 
     //--------------------------------------- ID STAGE ---------------------------------------
@@ -122,11 +124,13 @@ module top_module(clk1,clk2);
                     ID_EX_B    <=  0;
                     ID_EX_Imm  <=  0;
                     ID_EX_NPC  <=  0;
+                    ID_EX_valid <= 0;
                 end
 
             else if (stall) 
                 begin
                 // INSERT NOP
+                    stall_count <= stall_count + 1; //INCREMENT STALL COUNT FOR PERFORMANCE EVALUATION
                     ID_EX_IR   <=  NOP;
                     ID_EX_type <=  NTYPE;
                     ID_EX_A    <=  0;
@@ -145,6 +149,7 @@ module top_module(clk1,clk2);
                 ID_EX_NPC <=  IF_ID_NPC;
                 ID_EX_PC <= IF_ID_NPC -1;
                 ID_EX_IR <=  IF_ID_IR;
+                ID_EX_valid <= IF_ID_valid;
                 ID_EX_Imm <=  {{16{IF_ID_IR[15]}}, IF_ID_IR[15:0]};
                 ID_EX_pred <= IF_ID_pred;
 
@@ -214,6 +219,7 @@ module top_module(clk1,clk2);
        FLUSH <= 0;
         actual_taken = 0; 
         EX_MEM_IR   <=  ID_EX_IR;
+        EX_MEM_valid <= ID_EX_valid;
         EX_MEM_type <=  ID_EX_type;
         // TAKEN_BRANCH <=  0;
 
@@ -256,7 +262,14 @@ module top_module(clk1,clk2);
                         EX_MEM_cond <=  (ALU_A == 0) ? 1'b1 : 1'b0; //CHECK IF BRANCH CONDITION IS MET
                         
                         actual_taken = (ID_EX_IR[31:26] == BEQZ && ALU_A == 0) || (ID_EX_IR[31:26] == BNEQZ && ALU_A != 0) ;
-                        BHT[ID_EX_PC[3:0]] <= actual_taken; //UPDATE BHT WITH THE ACTUAL OUTCOME OF THE BRANCH
+                        // BHT[ID_EX_PC[3:0]] <= actual_taken; //UPDATE BHT WITH THE ACTUAL OUTCOME OF THE BRANCH // this is for 1-bit predictor
+
+                        if(actual_taken && BHT[ID_EX_PC[3:0]] != 2'b11) //IF ACTUALLY TAKEN, UPDATE BHT TOWARDS TAKEN (11)
+                            BHT[ID_EX_PC[3:0]] <= BHT[ID_EX_PC[3:0]] + 1;
+                        else if (!actual_taken && BHT[ID_EX_PC[3:0]] != 2'b00) //IF ACTUALLY NOT TAKEN, UPDATE BHT TOWARDS NOT TAKEN (00)
+                            BHT[ID_EX_PC[3:0]] <= BHT[ID_EX_PC[3:0]] - 1;
+
+
                         if(actual_taken) begin
                             BTB[ID_EX_PC[3:0]] <= ID_EX_PC + ID_EX_Imm ;
                             BTB_valid[ID_EX_PC[3:0]] <= 1'b1;
@@ -264,10 +277,11 @@ module top_module(clk1,clk2);
                         end
 
                         FLUSH <= (ID_EX_pred != actual_taken);
-
+                        if(actual_taken)
+                            branch_count <= branch_count + 1; //INCREMENT BRANCH COUNT FOR PERFORMANCE EVALUATION
                         if(ID_EX_pred != actual_taken) //MISPREDICTION
                         begin
-                           
+                            mispred_count <= mispred_count + 1; //INCREMENT MISPREDICTION COUNT FOR PERFORMANCE EVALUATION
                             PC_write <= 1'b1;
                             if(actual_taken) //ACTUALLY TAKEN
                                 next_PC <= ID_EX_PC + ID_EX_Imm;//UPDATE PC TO THE CORRECT TARGET ADDRESS
@@ -298,6 +312,7 @@ module top_module(clk1,clk2);
     always @(posedge clk2)
         begin
             MEM_WB_IR   <=  EX_MEM_IR;
+            MEM_WB_valid <= EX_MEM_valid;
             MEM_WB_type <=  EX_MEM_type;
 
             //  Correct propagation
@@ -316,15 +331,20 @@ module top_module(clk1,clk2);
     //--------------------------------------------- WB STAGE ---------------------------------------------
     always @(posedge clk1)
         begin
-                    if(!HALTED) begin
-                    case (MEM_WB_type)
-                        RR_ALU: Reg[MEM_WB_IR[15:11]] <=  MEM_WB_ALUout; //R-TYPE INSTRUCTION, WRITE TO RD
-                        RM_ALU: Reg[MEM_WB_IR[20:16]] <=  MEM_WB_ALUout; //I-TYPE INSTRUCTION, WRITE TO RT
-                        LOAD: Reg[MEM_WB_IR[20:16]] <=  MEM_WB_LMD; //LOAD INSTRUCTION, WRITE LOADED VALUE TO RT
-                        // HALT: HALTED <=  1'b1; //SET HALTED FLAG, PREVENTS NEW INSTRUCTION FROM BEING FETCHED
-                        NTYPE: ; //NO-OPERATION INSTRUCTION, DOES NOTHING
-                        default: ; //STORE AND BRANCH INSTRUCTIONS DO NOT WRITE BACK TO REGISTER FILE
-                    endcase
-                end
+            if(!HALTED) begin
+                case (MEM_WB_type)
+                    RR_ALU: Reg[MEM_WB_IR[15:11]] <=  MEM_WB_ALUout; //R-TYPE INSTRUCTION, WRITE TO RD
+                    RM_ALU: Reg[MEM_WB_IR[20:16]] <=  MEM_WB_ALUout; //I-TYPE INSTRUCTION, WRITE TO RT
+                    LOAD: Reg[MEM_WB_IR[20:16]] <=  MEM_WB_LMD; //LOAD INSTRUCTION, WRITE LOADED VALUE TO RT
+                    // HALT: HALTED <=  1'b1; //SET HALTED FLAG, PREVENTS NEW INSTRUCTION FROM BEING FETCHED
+                    NTYPE: ; //NO-OPERATION INSTRUCTION, DOES NOTHING
+                    default: ; //STORE AND BRANCH INSTRUCTIONS DO NOT WRITE BACK TO REGISTER FILE
+                endcase
             end
+            if(!HALTED && MEM_WB_type != NTYPE && MEM_WB_valid) //INCREMENT INSTRUCTION COUNT FOR EVERY INSTRUCTION THAT IS ACTUALLY PROCESSED (EXCLUDES NOPs)
+                instr_count <= instr_count + 1;
+        end
+
+            
+        
 endmodule

@@ -1,0 +1,13 @@
+0.7
+2020.2
+Nov 14 2025
+19:37:27
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.sim/sim_1/behav/xsim/glbl.v,1756381829,verilog,,,,glbl,,,,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sim_1/new/tb_evm.v,1780165471,verilog,,,,tb_evm,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/admin_auth.v,1779871397,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/auth_module.v,,admin_auth,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/auth_module.v,1779872538,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/evm_top.v,,auth_module,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/evm_top.v,1780164578,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/result_mode.v,,evm_top,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/result_mode.v,1779871420,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/vote_input_interface.v,,result_mode,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/vote_input_interface.v,1779874365,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/vote_storage.v,,vote_input_interface,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/vote_storage.v,1780162922,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/voter_input_interface.v,,vote_storage,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,
+C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sources_1/new/voter_input_interface.v,1780166152,verilog,,C:/Users/Hartik Rai/OneDrive/Desktop/Labs/EVM_MACHINE2/EVM_MACHINE2.srcs/sim_1/new/tb_evm.v,,voter_input_interface,,,D:/2025.2/Vivado/data/rsb/busdef,,,,,

@@ -71,19 +71,12 @@ FPGA-Secure-EVM/
 └── README.md
 ```
 
-> **Note:** Folder names may differ depending on your repository structure. Update them if necessary.
-
 ---
 
 # 🏗️ System Architecture
 
 The Electronic Voting Machine is built using a modular architecture where each module performs a dedicated task. The voter first enters a valid voter ID, which is verified by the authentication module. After successful authentication, the voter selects a candidate, and the vote is securely stored. Duplicate voting is prevented by maintaining the voting status of each authorized voter. Election results remain protected until the administrator successfully logs in.
 
-> 📷 **Insert your Overall System Architecture diagram here**
-
-```markdown
-![System Architecture](images/system_architecture.png)
-```
 
 ---
 
@@ -381,13 +374,6 @@ The complete design follows a hierarchical RTL architecture where each module co
        Result Generation
 ```
 
-> 📷 **Insert your RTL Architecture Diagram here**
-
-```markdown
-![RTL Architecture](images/rtl_architecture.png)
-```
-
----
 
 # 🔒 Security Features
 
@@ -420,46 +406,6 @@ The following functionality was verified during simulation:
 - ✔ Proper FSM state transitions
 
 This modular verification approach helped identify design issues early and ensured correct system behavior after integration.
-
----
-
-# 📊 Simulation Results
-
-The simulation confirms that the voting machine performs each operation in the expected sequence.
-
-### Verified Test Cases
-
-| Test Case | Expected Result | Status |
-|------------|----------------|:------:|
-| Valid Voter ID | Authentication Successful | ✅ |
-| Invalid Voter ID | Access Denied | ✅ |
-| Duplicate Voting | Vote Rejected | ✅ |
-| Candidate Selection | Vote Stored Successfully | ✅ |
-| Admin Authentication | Result Mode Enabled | ✅ |
-| Incorrect Admin Password | Access Denied | ✅ |
-| Vote Counter Update | Correct Vote Count | ✅ |
-
----
-
-# 📷 Simulation Waveforms
-
-The following waveform demonstrates the operation of the Electronic Voting Machine during simulation.
-
-> **Insert Simulation Waveform Here**
-
-```markdown
-![Simulation Waveform](images/simulation_waveform.png)
-```
-
-The waveform verifies the following sequence:
-
-- System Reset
-- Voter Authentication
-- Candidate Selection
-- Vote Storage
-- Vote Counter Increment
-- Administrator Login
-- Result Display
 
 ---
 
@@ -503,19 +449,6 @@ A[Verilog RTL]
 
 ---
 
-# 📸 Hardware Demonstration
-
-> **Insert Hardware Images Here**
-
-```markdown
-![Hardware Setup](images/hardware_setup.jpg)
-```
-
-```markdown
-![FPGA Testing](images/fpga_testing.jpg)
-```
-
----
 
 # 🚀 Future Improvements
 
